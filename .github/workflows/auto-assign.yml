@@ -1,12 +1,37 @@
-name: 'Auto Assign'
+name: Auto Assign
 on:
+  issues:
+    types: [opened, edited, labeled, unlabeled]
   pull_request:
-    types: [opened, ready_for_review]
-
+    types: [opened, edited, labeled, unlabeled]
 jobs:
-  add-reviews:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: kentaro-m/auto-assign-action@v1.2.4
+      - uses: hmarr/debug-action@v2
+      - uses: actions/checkout@v3
+      - name: 🚧　Install
+        run: |
+          yarn
+      - name: 📦　Build
+        run: |
+          yarn run build
+      - name: 🔑　Generate Token
+        uses: wow-actions/use-app-token@v2
         with:
-          configuration-path: '.github/some_name_for_configs.yml' # Only needed if you use something other than .github/auto_assign.yml
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - uses: ./
+        with:
+          GITHUB_TOKEN: ${{ env.BOT_TOKEN }}
+          addReviewers: true
+          addAssignees: true
+          numberOfReviewers: 1
+          numberOfAssignees: 1
+          reviewers: |
+            /authors
+          assignees: |
+            this-is-an-unknown-assignee
+            /authors
+          skipKeywords: wip
+          excludeLabels: dependencies, wip
