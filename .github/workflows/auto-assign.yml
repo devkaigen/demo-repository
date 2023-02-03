@@ -15,7 +15,7 @@ jobs:
           yarn
       - name: 📦　Build
         run: |
-          yarn build
+          yarn run build
       - name: 🔑　Generate Token
         uses: wow-actions/use-app-token@v2
         with:
