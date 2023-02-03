@@ -10,3 +10,5 @@ jobs:
     steps:
     - name: Auto Assign Issues/PRs
       uses: wow-actions/auto-assign@v3.0.2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
