@@ -1,11 +1,11 @@
-name: Label issues
+name: Label and assign PR
 on:
-  issues:
+  pull_request:
     types:
       - reopened
       - opened
 jobs:
-  label_issues:
+  label_and_assign:
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -13,7 +13,19 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.addLabels({
+            github.rest.pulls.addAssignees({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              assignees: ["team-member-1"]
+            })
+            github.rest.pulls.createReviewRequest({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              reviewers: ["team-member-2"]
+            })
+            github.rest.pulls.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
