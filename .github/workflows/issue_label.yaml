@@ -17,13 +17,13 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              assignees: ["team-member-1"]
+              assignees: ["CervinoB"]
             })
             github.rest.pulls.createReviewRequest({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              reviewers: ["team-member-2"]
+              reviewers: ["CervinoB"]
             })
             github.rest.pulls.addLabels({
               issue_number: context.issue.number,
