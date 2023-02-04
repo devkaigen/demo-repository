@@ -1,7 +1,6 @@
 ---
 name: Bug Report
 about: File a bug/issue
-title: '[BUG] <title>'
 labels: bug
 assignees:
   - CervinoB
