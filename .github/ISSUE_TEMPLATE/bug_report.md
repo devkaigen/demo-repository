@@ -2,7 +2,7 @@
 name: Bug Report
 about: File a bug/issue
 title: '[BUG] <title>'
-labels: Bug, Needs Triage
+labels: bug
 assignees:
   - CervinoB
 ---
