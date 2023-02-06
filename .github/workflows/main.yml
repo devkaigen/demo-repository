@@ -21,7 +21,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Step 1 - Log the pre-build disc space
-      - run: df
+        run: df
       
       - name: Step 2 - Checkout the main GitHub branch
       - uses: actions/checkout@v3
