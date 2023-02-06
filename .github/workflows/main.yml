@@ -30,6 +30,7 @@ jobs:
         uses: actions/setup-java@v3.9.0
         with: 
           java-version: '17'
+          distribution: 'microsoft'
           
       - name: Step 4 - Check what is in this directory 
         run: ls -a
